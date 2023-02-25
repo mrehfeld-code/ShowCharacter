@@ -1,0 +1,11 @@
+# MSVC build files
+*.exe
+*.dll
+*.lib
+*.pdb
+*.vc*
+.vs/
+
+# generall build files
+bin/
+build/
