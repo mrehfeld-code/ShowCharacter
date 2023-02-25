@@ -8,14 +8,25 @@
 #define DEFAULT_WINDOW_HEIGHT 900
 #define DEFAULT_WINDOW_TITLE "ShowCharacter"
 
+
 int main() {
+	SDL_version ver;
+
 	if (SDL_Init(SDL_INIT_VIDEO)) printf("Failed to initialize SDL3!\n%s\n", SDL_GetError()), exit(EXIT_FAILURE);
+	SDL_VERSION(&ver);
+	printf("SDL %u.%u.%u\n", ver.major, ver.minor, ver.patch);
+
+	if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) printf("Failed to initialize SDL3_image!\n%s\n", IMG_GetError()), exit(EXIT_FAILURE);
+	SDL_IMAGE_VERSION(&ver);
+	printf("SDL_image %u.%u.%u\n", ver.major, ver.minor, ver.patch);
 
 	SDL_Window* window = SDL_CreateWindow(DEFAULT_WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT, NULL);
 	if (!window) printf("Cannot create a window!\n%s\n", SDL_GetError()), exit(EXIT_FAILURE);
 
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL, SDL_RENDERER_ACCELERATED);
 	if (!renderer) printf("Cannot create a renderer!\n%s\n", SDL_GetError()), exit(EXIT_FAILURE);
+
+	
 
 	SDL_Event event;
 	bool loop = true;
