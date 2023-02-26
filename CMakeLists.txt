@@ -15,10 +15,11 @@ if(MSVC)
 	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 endif()
 
-set(SOURCE_FILES "src/main.cpp")
+set(SOURCE_FILES "src/main.cpp" "src/spritesheet_handling.cpp")
 
 add_subdirectory("external/SDL")
 add_subdirectory("external/SDL_image")
+add_subdirectory("external/SDL_ttf")
 
 add_executable(ShowCharacter ${SOURCE_FILES})
 
@@ -27,6 +28,9 @@ target_link_libraries(ShowCharacter PUBLIC SDL3-shared)
 
 target_include_directories(ShowCharacter PUBLIC "external/SDL_image/include")
 target_link_libraries(ShowCharacter PUBLIC SDL3_image)
+
+target_include_directories(ShowCharacter PUBLIC "external/SDL_ttf/include")
+target_link_libraries(ShowCharacter PUBLIC SDL3_ttf)
 
 if(MSVC)
 	set_target_properties(ShowCharacter PROPERTIES VS_DEBUGGER_WORKING_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG})
